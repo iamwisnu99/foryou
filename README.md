@@ -15,7 +15,7 @@ Buka file [`.env.local`](.env.local) dan sesuaikan variabel berikut:
 NEXT_PUBLIC_CRUSH_NAME="Ambar"
 
 # Panggilan akrab
-NEXT_PUBLIC_CRUSH_NICKNAME="Si Paling Imut"
+NEXT_PUBLIC_CRUSH_NICKNAME="Si Imut"
 
 # Nama pengirim
 NEXT_PUBLIC_SENDER_NAME="Wisnu"

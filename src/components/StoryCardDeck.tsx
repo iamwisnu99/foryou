@@ -383,7 +383,7 @@ export default function StoryCardDeck() {
                           </span>
                           {currentTrack.isSpecial && (
                             <span style={{ fontSize: "0.62rem", fontWeight: 700, color: "var(--color-primary)", background: "rgba(255, 71, 126, 0.1)", padding: "1px 5px", borderRadius: "6px" }}>
-                              ⭐ Spesial
+                              ⭐ Khusus {crushName}
                             </span>
                           )}
                         </div>

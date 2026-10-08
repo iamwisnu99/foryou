@@ -1,3 +1,5 @@
+import { confessionConfig } from "./confession";
+
 export interface Track {
   id: string;
   title: string;
@@ -14,13 +16,13 @@ export const DEFAULT_COVER = "/apple-touch-icon.png";
 
 export const TRACK_LIST: Track[] = [
   {
-    id: "ambar-kucing-2",
-    title: "Ambar dan Kucing Kesayangan Pt. 2",
-    artist: "Wisnu",
-    album: "Spesial Buat Ambar",
-    fileName: "Ambar dan Kucing Kesayangan Pt. 2.mp3",
-    src: encodeURI("/music/Ambar dan Kucing Kesayangan Pt. 2.mp3"),
-    cover: encodeURI("/music/Ambar dan Kucing Kesayangan Pt. 2.jpeg"),
+    id: "i-intend-to-be-your-last",
+    title: "I intend to be Your Last",
+    artist: confessionConfig.senderName || "Wisnu",
+    album: `Khusus Buat ${confessionConfig.crushName || "Ambar"}`,
+    fileName: "I Intend to be Your Last.mp3",
+    src: encodeURI("/music/I Intend to be Your Last.mp3"),
+    cover: "/og-image.png",
     isSpecial: true,
   },
   {
