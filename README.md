@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💌 FORYOU - Website Ungkapan Perasaan
 
-## Getting Started
+Website interaktif mobile-first untuk menyampaikan pesan dan ungkapan perasaan secara tulus, personal, dan tanpa tekanan, dibangun menggunakan Next.js 16, TypeScript, Framer Motion, dan Modern CSS.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🔒 Konfigurasi Data Pribadi
+
+Seluruh informasi personal seperti nama dan nomor WhatsApp dikelola melalui file `.env.local`. File ini secara otomatis diabaikan oleh git (`.gitignore`) demi menjaga privasi data.
+
+Buka file [`.env.local`](.env.local) dan sesuaikan variabel berikut:
+
+```env
+# Nama target
+NEXT_PUBLIC_CRUSH_NAME="Ambar"
+
+# Panggilan akrab
+NEXT_PUBLIC_CRUSH_NICKNAME="Si Paling Imut"
+
+# Nama pengirim
+NEXT_PUBLIC_SENDER_NAME="Wisnu"
+
+# Nomor WhatsApp pengirim (format: 62xxx tanpa tanda +)
+NEXT_PUBLIC_WHATSAPP_NUMBER="6283863867266"
+
+# Template pesan WhatsApp default
+NEXT_PUBLIC_WA_MESSAGE="Wkwk niat banget bikin web Next.js segala! Tenang, gak ada beruang kok. Makasih ya buat apresiasinya!"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Cara Menjalankan di Lingkungan Lokal
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Pasang seluruh dependensi proyek:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Jalankan development server:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Akses aplikasi melalui peramban web:
+   - Akses dari komputer lokal: [http://localhost:3000](http://localhost:3000)
+   - Akses dari smartphone dalam jaringan Wi-Fi yang sama: **`http://192.168.1.24:3000`**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌐 Panduan Publikasi ke Internet (Vercel)
 
-## Deploy on Vercel
+Untuk membagikan tautan publik langsung kepada target, platform Vercel dapat digunakan secara gratis.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ⚡ Melalui Vercel CLI
+1. Jalankan perintah instalasi dan deployment:
+   ```bash
+   npx vercel
+   ```
+2. Ikuti proses autentikasi akun.
+3. Saat konfirmasi *Link to existing project?*, tentukan pilihan `N`.
+4. Masukkan nama project sesuai kebutuhan.
+5. Konfigurasikan Environment Variables pada menu **Project Settings -> Environment Variables** sesuai isi file `.env.local`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📦 Melalui GitHub dan Dasbor Vercel
+1. Unggah repositori ke GitHub dalam mode repositori privat.
+2. Buka platform Vercel dan pilih **Add New Project**.
+3. Hubungkan repositori GitHub yang bersangkutan.
+4. Masukkan variabel lingkungan dari `.env.local` pada bagian **Environment Variables**.
+5. Pilih **Deploy** untuk memulai proses kompilasi dan peluncuran situs.
