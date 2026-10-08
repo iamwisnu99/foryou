@@ -30,15 +30,8 @@ const crushName = confessionConfig.crushName || "Ambar";
 const crushNickname = confessionConfig.crushNickname || "Si Paling Imut";
 const senderName = confessionConfig.senderName || "Wisnu";
 
-const rawSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
-
-const siteUrl = rawSiteUrl.startsWith("http") ? rawSiteUrl : `https://${rawSiteUrl}`;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://foryou.primawisnu.my.id";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -58,6 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Khusus Buat ${crushName} (${crushNickname}) 💌`,
     description: `Peringatan: Dokumen rahasia ini bukan virus atau tagihan paylater, cuma pesan jujur dari ${senderName} yang groginya kayak habis dikejar beruang 🐻💨`,
+    url: siteUrl,
     siteName: "Pesan Khusus Untukmu",
     images: [
       {
