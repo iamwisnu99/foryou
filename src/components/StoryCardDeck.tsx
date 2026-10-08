@@ -25,7 +25,6 @@ import {
   ChevronDown,
   ChevronUp,
   PenTool,
-  Info,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { confessionConfig, getWhatsAppUrl } from "@/config/confession";
@@ -37,25 +36,27 @@ export default function StoryCardDeck() {
   const [likedCards, setLikedCards] = useState<number[]>([]);
   const [hasSentHeart, setHasSentHeart] = useState(false);
   const [heartsCount, setHeartsCount] = useState(0);
+  const [confessionTaps, setConfessionTaps] = useState(0);
 
-  // Typewriter state for Step 3 (Letter)
+  // Typewriter state for Step 4 (Letter)
   const [typedCharCount, setTypedCharCount] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const typingTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const { crushName, crushNickname, senderName } = confessionConfig;
 
-  const totalSteps = 5;
+  const totalSteps = 6;
 
   const stepLabels = [
     "Awal Cerita",
     "Gejala Salting",
     "Tentang Kamu",
+    "Ungkapan Rasa",
     "Surat Kejujuran",
     "Pesan Akhir",
   ];
 
-  // Letter content for step 3
+  // Letter content for step 4
   const letterParagraphs = [
     `By the way, semua yang aku rancang dan tulis di website ini bener-bener hanya untuk ${crushName}. Aku senang dan lega banget akhirnya punya keberanian buat mengungkapkan perasaanku yang sejujur-jujurnya tanpa ditutup-tutupi lagi.`,
     `Tapi kamu sama sekali tidak perlu khawatir: ini bukan menembakmu untuk jadi pacarku, dan aku tidak menuntut jawaban "ya atau tidak". Tujuanku cuma satu: aku ingin kamu tahu bagaimana perasaanku ke kamu, itu saja.`,
@@ -64,9 +65,9 @@ export default function StoryCardDeck() {
 
   const fullLetterText = letterParagraphs.join("\n\n");
 
-  // Typewriter effect triggered on Step 3
+  // Typewriter effect triggered on Step 4 (Surat Kejujuran)
   useEffect(() => {
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTypedCharCount(0);
       setIsTypingComplete(false);
 
@@ -122,6 +123,22 @@ export default function StoryCardDeck() {
     );
   };
 
+  const handleConfessionHeartClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    setConfessionTaps(prev => prev + 1);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+    confetti({
+      particleCount: 30,
+      spread: 60,
+      origin: { x, y },
+      colors: ["#FF477E", "#FF70A6", "#FFB703"],
+      shapes: ["circle"],
+      scalar: 1.1,
+    });
+  };
+
   const handleSendConfetti = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (rect.left + rect.width / 2) / window.innerWidth;
@@ -160,7 +177,6 @@ export default function StoryCardDeck() {
     }),
   };
 
-  // Display text slice for typewriter
   const visibleText = fullLetterText.slice(0, typedCharCount);
 
   return (
@@ -490,8 +506,116 @@ export default function StoryCardDeck() {
               </div>
             )}
 
-            {/* ================= STEP 3: HONEST LETTER (TYPEWRITER ANIMATED) ================= */}
+            {/* ================= STEP 3: UNGKAPAN PERASAAN (NEW STEP) ================= */}
             {currentStep === 3 && (
+              <div className="story-card-scrollable" style={{ textAlign: "center", alignItems: "center" }}>
+                <div className="badge-pill badge-pink animate-pulse-subtle" style={{ margin: "0 auto" }}>
+                  <Heart size={13} fill="currentColor" />
+                  <span>Pengungkapan Perasaan</span>
+                </div>
+
+                <div>
+                  <h2 style={{ fontSize: "1.3rem", color: "var(--text-headline)", marginTop: "4px" }}>
+                    Ada Hal yang Ingin Aku Katakan...
+                  </h2>
+                  <p style={{ fontSize: "0.84rem", color: "var(--text-muted)", marginTop: "2px" }}>
+                    Sebuah pengakuan jujur dari lubuk hati yang paling dalam.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    width: "100%",
+                    padding: "20px 16px",
+                    borderRadius: "var(--radius-lg)",
+                    background: "linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 243, 0.9) 100%)",
+                    border: "1.5px solid rgba(255, 140, 165, 0.45)",
+                    boxShadow: "0 14px 30px -6px rgba(255, 90, 120, 0.15)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "16px",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <p style={{ fontSize: "0.93rem", color: "var(--text-body)", lineHeight: "1.65" }}>
+                    Dari semua hal yang sering aku perhatiin dan setiap obrolan yang kita lewati, ada satu hal yang paling jujur dari hati aku:
+                  </p>
+
+                  <div
+                    style={{
+                      fontSize: "1.05rem",
+                      fontWeight: 700,
+                      color: "var(--text-headline)",
+                      lineHeight: "1.6",
+                      padding: "12px 14px",
+                      borderRadius: "var(--radius-md)",
+                      background: "rgba(255, 255, 255, 0.88)",
+                      border: "1px dashed var(--border-soft)",
+                    }}
+                  >
+                    Aku suka sama <span style={{ color: "var(--color-primary-text)" }}>{crushName}</span>, dan bahkan rasa suka ini perlahan sudah mulai merasakan cinta.
+                  </div>
+
+                  {/* Interactive Bold Italic Confession Banner */}
+                  <motion.div
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    onClick={handleConfessionHeartClick}
+                    style={{
+                      width: "100%",
+                      padding: "14px 18px",
+                      borderRadius: "var(--radius-full)",
+                      background: "linear-gradient(135deg, rgba(255, 71, 126, 0.14) 0%, rgba(255, 183, 3, 0.12) 100%)",
+                      border: "1.5px solid rgba(255, 71, 126, 0.45)",
+                      boxShadow: "0 8px 22px -4px rgba(255, 71, 126, 0.22)",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "10px",
+                      userSelect: "none",
+                      transition: "all 0.25s ease",
+                    }}
+                  >
+                    <motion.div
+                      animate={{ scale: [1, 1.25, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.3, ease: "easeInOut" }}
+                      style={{ display: "inline-flex", alignItems: "center" }}
+                    >
+                      <Heart size={20} color="var(--color-primary)" fill="var(--color-primary)" />
+                    </motion.div>
+                    <span
+                      style={{
+                        fontSize: "1.15rem",
+                        fontWeight: 800,
+                        fontStyle: "italic",
+                        color: "var(--color-primary-text)",
+                        letterSpacing: "0.02em",
+                      }}
+                    >
+                      I do really like you
+                    </span>
+                    <motion.div
+                      animate={{ scale: [1, 1.25, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.3, ease: "easeInOut", delay: 0.2 }}
+                      style={{ display: "inline-flex", alignItems: "center" }}
+                    >
+                      <Heart size={20} color="var(--color-primary)" fill="var(--color-primary)" />
+                    </motion.div>
+                  </motion.div>
+
+                  <p style={{ fontSize: "0.78rem", color: "var(--text-caption)" }}>
+                    {confessionTaps > 0
+                      ? `✨ Perasaan cinta tersampaikan (${confessionTaps}x)!`
+                      : "(Ketuk teks di atas untuk getaran hatinya ✨)"}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* ================= STEP 4: HONEST LETTER (TYPEWRITER ANIMATED) ================= */}
+            {currentStep === 4 && (
               <div className="story-card-scrollable">
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <h2 style={{ fontSize: "1.25rem", color: "var(--text-headline)" }}>
@@ -566,8 +690,8 @@ export default function StoryCardDeck() {
               </div>
             )}
 
-            {/* ================= STEP 4: CONCLUSION & WA REACTION ================= */}
-            {currentStep === 4 && (
+            {/* ================= STEP 5: CONCLUSION & WA REACTION ================= */}
+            {currentStep === 5 && (
               <div className="story-card-scrollable" style={{ textAlign: "center" }}>
                 <div className="badge-pill badge-green" style={{ margin: "0 auto" }}>
                   <CheckCircle2 size={13} />
@@ -685,8 +809,9 @@ export default function StoryCardDeck() {
             <span>
               {currentStep === 0 && "Buka Catatan Rahasia"}
               {currentStep === 1 && "Lanjut: Tentang Kamu"}
-              {currentStep === 2 && "Buka Surat Kejujuran"}
-              {currentStep === 3 && "Lanjut ke Penutup"}
+              {currentStep === 2 && "Buka Ungkapan Rasa"}
+              {currentStep === 3 && "Baca Surat Kejujuran"}
+              {currentStep === 4 && "Lanjut ke Penutup"}
             </span>
             <ArrowRight size={18} />
           </button>
