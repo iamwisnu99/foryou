@@ -1,6 +1,6 @@
 {
-  "name": "ForYou",
-  "short_name": "ForYou",
+  "name": "For You",
+  "short_name": "For You",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#fdfae8",
-  "background_color": "#fdfae8",
+  "theme_color": "#fcfae8",
+  "background_color": "#fcfae8",
   "display": "standalone"
 }
