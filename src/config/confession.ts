@@ -8,7 +8,7 @@ export interface ConfessionConfig {
 
 export const confessionConfig: ConfessionConfig = {
   crushName: process.env.NEXT_PUBLIC_CRUSH_NAME || "Ambar",
-  crushNickname: process.env.NEXT_PUBLIC_CRUSH_NICKNAME || "Si Paling Imut",
+  crushNickname: process.env.NEXT_PUBLIC_CRUSH_NICKNAME || "Si Imut",
   senderName: process.env.NEXT_PUBLIC_SENDER_NAME || "Wisnu",
   whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6283863867266").replace(/\D/g, ""),
   waMessage: process.env.NEXT_PUBLIC_WA_MESSAGE || "Wkwk niat banget bikin web Next.js segala! 😂 Tenang, gak ada beruang kok. Makasih ya buat apresiasinya!",

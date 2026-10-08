@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 };
 
 const crushName = confessionConfig.crushName || "Ambar";
-const crushNickname = confessionConfig.crushNickname || "Si Paling Imut";
+const crushNickname = confessionConfig.crushNickname || "Si Imut";
 const senderName = confessionConfig.senderName || "Wisnu";
 
 const siteUrl =

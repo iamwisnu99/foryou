@@ -1,20 +1,37 @@
+"use client";
+
 import React from "react";
 import StoryCardDeck from "@/components/StoryCardDeck";
-import SoundtrackPlayer from "@/components/SoundtrackPlayer";
+import MusicSelectScreen from "@/components/MusicSelectScreen";
+import MusicSelectorModal from "@/components/MusicSelectorModal";
+import { MusicProvider, useMusic } from "@/context/MusicContext";
 
-export default function Home() {
+function MainDeckOrMusicSelect() {
+  const { hasEntered } = useMusic();
+
   return (
     <>
       {/* Decorative ambient background grid dots */}
       <div className="bg-pattern" aria-hidden="true" />
 
-      {/* Main Story Card Deck (Step-by-Step Effortless Mobile Experience) */}
       <main style={{ width: "100%", display: "flex", justifyContent: "center", minHeight: "100dvh" }}>
-        <StoryCardDeck />
+        {!hasEntered ? (
+          <MusicSelectScreen />
+        ) : (
+          <StoryCardDeck />
+        )}
       </main>
 
-      {/* Ambient Lo-fi Music Player */}
-      <SoundtrackPlayer />
+      {/* Modal for switching songs anytime during the story */}
+      <MusicSelectorModal />
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <MusicProvider>
+      <MainDeckOrMusicSelect />
+    </MusicProvider>
   );
 }

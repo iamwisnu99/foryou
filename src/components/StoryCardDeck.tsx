@@ -25,9 +25,14 @@ import {
   ChevronDown,
   ChevronUp,
   PenTool,
+  Music2,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { confessionConfig, getWhatsAppUrl } from "@/config/confession";
+import SoundtrackPlayer from "@/components/SoundtrackPlayer";
+import ScratchCard from "@/components/ScratchCard";
+import { useMusic } from "@/context/MusicContext";
+import { DEFAULT_COVER } from "@/config/music";
 
 /* ─────────────── constants ─────────────── */
 
@@ -54,6 +59,9 @@ export default function StoryCardDeck() {
   const [hasSentHeart, setHasSentHeart] = useState(false);
   const [heartsCount, setHeartsCount] = useState(0);
   const [confessionTaps, setConfessionTaps] = useState(0);
+
+  // Music context
+  const { currentTrack, isPlaying, openSelector } = useMusic();
 
   // Typewriter
   const [typedCharCount, setTypedCharCount] = useState(0);
@@ -253,20 +261,23 @@ export default function StoryCardDeck() {
         </div>
 
         <div className="story-step-badge">
-          <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
-            <span className="badge-pill badge-pink" style={{ padding: "3px 10px", fontSize: "0.72rem" }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", minWidth: 0, flexShrink: 1 }}>
+            <span className="badge-pill badge-pink" style={{ padding: "3px 8px", fontSize: "0.72rem", flexShrink: 0 }}>
               {currentStep + 1}/{TOTAL_STEPS}
             </span>
-            <span style={{ fontWeight: 700, color: "var(--text-headline)", fontSize: "0.82rem" }}>
+            <span style={{ fontWeight: 700, color: "var(--text-headline)", fontSize: "0.82rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {STEP_LABELS[currentStep]}
             </span>
           </span>
-          <span
-            className="font-hand"
-            style={{ fontSize: "1rem", color: "var(--color-primary-text)" }}
-          >
-            Buat {crushName}
-          </span>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
+            <span
+              className="font-hand"
+              style={{ fontSize: "1.05rem", color: "var(--color-primary-text)", lineHeight: 1 }}
+            >
+              Buat {crushName}
+            </span>
+            <SoundtrackPlayer />
+          </div>
         </div>
       </header>
 
@@ -293,7 +304,7 @@ export default function StoryCardDeck() {
                     className="font-hand"
                     style={{ fontSize: "1.15rem", color: "var(--text-muted)", marginTop: "2px" }}
                   >
-                    ({crushNickname || "Si Paling Imut"})
+                    ({crushNickname || "Si Imut"})
                   </p>
                 </div>
 
@@ -334,6 +345,82 @@ export default function StoryCardDeck() {
                     <Compass size={15} color="var(--color-primary)" style={{ flexShrink: 0 }} />
                     <span>Jadi biarkan teknologi ini yang menyampaikan apa yang tertahan di kepala.</span>
                   </div>
+                </div>
+
+                {/* Soundtrack Card in Step 0 */}
+                <div
+                  onClick={openSelector}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "10px 12px",
+                    borderRadius: "16px",
+                    background: "rgba(255, 255, 255, 0.9)",
+                    border: "1.5px dashed rgba(255, 140, 165, 0.45)",
+                    cursor: "pointer",
+                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.03)",
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  {currentTrack ? (
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
+                      <div style={{ width: "38px", height: "38px", borderRadius: "10px", overflow: "hidden", flexShrink: 0, boxShadow: "0 1px 4px rgba(0,0,0,0.1)", background: "#FCE7EC" }}>
+                        <img
+                          src={currentTrack.cover}
+                          alt={currentTrack.title}
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = DEFAULT_COVER;
+                          }}
+                          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                        />
+                      </div>
+                      <div style={{ textAlign: "left", minWidth: 0 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                          <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text-headline)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            {currentTrack.title}
+                          </span>
+                          {currentTrack.isSpecial && (
+                            <span style={{ fontSize: "0.62rem", fontWeight: 700, color: "var(--color-primary)", background: "rgba(255, 71, 126, 0.1)", padding: "1px 5px", borderRadius: "6px" }}>
+                              ⭐ Spesial
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "2px" }}>
+                          {currentTrack.artist} {isPlaying ? "• Sedang diputar 🎵" : "• Dijeda 🔇"}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
+                      <div style={{ width: "38px", height: "38px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255, 71, 126, 0.1)", color: "var(--color-primary)", flexShrink: 0 }}>
+                        <Music2 size={18} />
+                      </div>
+                      <div style={{ textAlign: "left", minWidth: 0 }}>
+                        <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text-headline)" }}>
+                          Mode Hening (Tanpa Musik)
+                        </div>
+                        <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "2px" }}>
+                          Sentuh di sini jika ingin memutar lagu
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <span
+                    style={{
+                      fontSize: "0.74rem",
+                      fontWeight: 700,
+                      color: "var(--color-primary)",
+                      padding: "4px 8px",
+                      borderRadius: "10px",
+                      background: "rgba(255, 71, 126, 0.08)",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {currentTrack ? "Ganti Lagu 🎶" : "Pilih Lagu 🎶"}
+                  </span>
                 </div>
               </div>
             )}
@@ -530,20 +617,10 @@ export default function StoryCardDeck() {
                     Daripada aku kena tipes gara-gara kebanyakan nahan deg-degan sendirian, mending aku buka kartu aja secara transparan tanpa kode-kodean rumit:
                   </p>
 
-                  <div
-                    style={{
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                      color: "var(--text-headline)",
-                      lineHeight: "1.65",
-                      padding: "12px 14px",
-                      borderRadius: "var(--radius-md)",
-                      background: "rgba(255, 255, 255, 0.92)",
-                      border: "1.5px dashed var(--border-glow)",
-                    }}
-                  >
+                  {/* Scratch-to-Reveal Confession */}
+                  <ScratchCard>
                     Aku beneran suka sama <span style={{ color: "var(--color-primary-text)" }}>{crushName}</span>. Dan gawatnya lagi, rasa suka ini belakangan udah lewat masa uji coba dan mulai pelan-pelan bertransformasi jadi perasaan cinta.
-                  </div>
+                  </ScratchCard>
 
                   {/* Interactive Confession Banner */}
                   <motion.div
