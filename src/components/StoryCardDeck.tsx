@@ -57,7 +57,7 @@ export default function StoryCardDeck() {
 
   // Letter content for step 3
   const letterParagraphs = [
-    `By the way, semua yang aku rancang dan tulis di website ini bener-bener hanya untukmu. Aku senang dan lega banget akhirnya punya keberanian buat mengungkapkan perasaanku yang sejujur-jujurnya tanpa ditutup-tutupi lagi.`,
+    `By the way, semua yang aku rancang dan tulis di website ini bener-bener hanya untuk ${crushName}. Aku senang dan lega banget akhirnya punya keberanian buat mengungkapkan perasaanku yang sejujur-jujurnya tanpa ditutup-tutupi lagi.`,
     `Tapi kamu sama sekali tidak perlu khawatir: ini bukan menembakmu untuk jadi pacarku, dan aku tidak menuntut jawaban "ya atau tidak". Tujuanku cuma satu: aku ingin kamu tahu bagaimana perasaanku ke kamu, itu saja.`,
     `Setelah membaca ini, kamu tidak perlu merasa canggung atau bingung harus bersikap seperti apa. Cukup jadilah dirimu sendiri, karena disitulah aku menyukaimu.`,
   ];

@@ -62,8 +62,8 @@ export default function HonestLetter() {
         {/* Letter Paragraphs */}
         <div style={{ display: "flex", flexDirection: "column", gap: "14px", fontSize: "0.93rem", lineHeight: "1.7", color: "var(--text-body)" }}>
           <p>
-            By the way, semua yang aku rancang dan tulis di website ini bener-bener 
-            <strong style={{ color: "var(--text-headline)" }}> hanya untukmu</strong>. Aku senang dan lega banget akhirnya punya keberanian buat mengungkapkan perasaanku yang sejujur-jujurnya tanpa ditutup-tutupi lagi.
+            By the way, semua yang aku rancang dan tulis di website ini bener-bener
+            <strong style={{ color: "var(--text-headline)" }}> hanya untuk {crushName}</strong>. Aku senang dan lega banget akhirnya punya keberanian buat mengungkapkan perasaanku yang sejujur-jujurnya tanpa ditutup-tutupi lagi.
           </p>
 
           <div style={{
