@@ -30,11 +30,18 @@ const crushName = confessionConfig.crushName || "Ambar";
 const crushNickname = confessionConfig.crushNickname || "Si Paling Imut";
 const senderName = confessionConfig.senderName || "Wisnu";
 
+const rawSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
+
+const siteUrl = rawSiteUrl.startsWith("http") ? rawSiteUrl : `https://${rawSiteUrl}`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
-  ),
+  metadataBase: new URL(siteUrl),
   title: `Khusus Buat ${crushName} (${crushNickname}) 💌`,
   description: `Peringatan: Dokumen rahasia ini bukan virus atau tagihan paylater, cuma pesan jujur dari ${senderName} yang groginya kayak habis dikejar beruang 🐻💨`,
   icons: {
@@ -51,14 +58,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Khusus Buat ${crushName} (${crushNickname}) 💌`,
     description: `Peringatan: Dokumen rahasia ini bukan virus atau tagihan paylater, cuma pesan jujur dari ${senderName} yang groginya kayak habis dikejar beruang 🐻💨`,
-    url: "/",
-    siteName: "Pesan Rahasia",
+    siteName: "Pesan Khusus Untukmu",
     images: [
       {
-        url: "/web-app-manifest-512x512.png",
+        url: "/og-image.png",
         width: 512,
         height: 512,
         alt: `Favicon Khusus Buat ${crushName}`,
+        type: "image/png",
+      },
+      {
+        url: "/apple-touch-icon.png",
+        width: 180,
+        height: 180,
+        alt: `Favicon Khusus Buat ${crushName}`,
+        type: "image/png",
       },
     ],
     locale: "id_ID",
@@ -68,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: `Khusus Buat ${crushName} (${crushNickname}) 💌`,
     description: `Peringatan: Bukan link pinjol atau virus, cuma pesan jujur yang dibikin khusus buat kamu! 🐻✨`,
-    images: ["/web-app-manifest-512x512.png"],
+    images: ["/og-image.png"],
   },
 };
 
