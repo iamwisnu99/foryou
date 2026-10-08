@@ -51,7 +51,7 @@ export default function StoryCardDeck() {
     "Awal Cerita",
     "Gejala Salting",
     "Tentang Kamu",
-    "Ungkapan Rasa",
+    "Pengungkapan Perasaan",
     "Surat Kejujuran",
     "Pesan Akhir",
   ];
@@ -296,7 +296,7 @@ export default function StoryCardDeck() {
                     &ldquo;Kenapa Harus Pake Website Beginian?&rdquo;
                   </h2>
                   <p style={{ fontSize: "0.89rem", color: "var(--text-body)", lineHeight: "1.65" }}>
-                    Jujur aja, kamu pasti tau kan... Kalau aku disuruh ngomong langsung di depan kamu, groginya udah kayak orang 
+                    Jujur aja, kamu pasti tau kan... Kalau aku disuruh ngomong langsung di depan kamu, groginya udah kayak orang
                     <strong style={{ color: "var(--color-primary-text)" }}> habis dikejar beruang kutub kelaparan</strong>.
                     Tangan dingin, detak jantung 180 BPM, dan kapasitas otak mendadak drop jadi 3%.
                   </p>
@@ -506,7 +506,7 @@ export default function StoryCardDeck() {
               </div>
             )}
 
-            {/* ================= STEP 3: UNGKAPAN PERASAAN (NEW STEP) ================= */}
+            {/* ================= STEP 3: PENGUNGKAPAN PERASAAN (HUMORIS, MANIS & GAK ALAY) ================= */}
             {currentStep === 3 && (
               <div className="story-card-scrollable" style={{ textAlign: "center", alignItems: "center" }}>
                 <div className="badge-pill badge-pink animate-pulse-subtle" style={{ margin: "0 auto" }}>
@@ -515,11 +515,11 @@ export default function StoryCardDeck() {
                 </div>
 
                 <div>
-                  <h2 style={{ fontSize: "1.3rem", color: "var(--text-headline)", marginTop: "4px" }}>
-                    Ada Hal yang Ingin Aku Katakan...
+                  <h2 style={{ fontSize: "1.25rem", color: "var(--text-headline)", marginTop: "4px" }}>
+                    Pengakuan Jujur (Tanpa Sensor)
                   </h2>
                   <p style={{ fontSize: "0.84rem", color: "var(--text-muted)", marginTop: "2px" }}>
-                    Sebuah pengakuan jujur dari lubuk hati yang paling dalam.
+                    Tolong dibaca santai ya, jangan tegang kayak mau wawancara kerja.
                   </p>
                 </div>
 
@@ -533,28 +533,33 @@ export default function StoryCardDeck() {
                     boxShadow: "0 14px 30px -6px rgba(255, 90, 120, 0.15)",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "16px",
+                    gap: "14px",
                     textAlign: "center",
                     alignItems: "center",
                   }}
                 >
-                  <p style={{ fontSize: "0.93rem", color: "var(--text-body)", lineHeight: "1.65" }}>
-                    Dari semua hal yang sering aku perhatiin dan setiap obrolan yang kita lewati, ada satu hal yang paling jujur dari hati aku:
+                  <p style={{ fontSize: "0.89rem", color: "var(--text-body)", lineHeight: "1.6" }}>
+                    Sebenarnya aku udah coba pasang gaya sok cool dan misterius. Tapi ternyata gagal total—tiap kali kamu ajak ngobrol atau ketawa lepas, sistem di otakku langsung nge-lag parah dan butuh restart.
+                  </p>
+
+                  <p style={{ fontSize: "0.89rem", color: "var(--text-body)", lineHeight: "1.6" }}>
+                    Daripada aku kena tipes gara-gara kebanyakan nahan deg-degan sendirian, mending aku buka kartu aja secara transparan tanpa kode-kodean rumit:
                   </p>
 
                   <div
                     style={{
-                      fontSize: "1.05rem",
+                      fontSize: "1.04rem",
                       fontWeight: 700,
                       color: "var(--text-headline)",
-                      lineHeight: "1.6",
-                      padding: "12px 14px",
+                      lineHeight: "1.65",
+                      padding: "14px 16px",
                       borderRadius: "var(--radius-md)",
-                      background: "rgba(255, 255, 255, 0.88)",
-                      border: "1px dashed var(--border-soft)",
+                      background: "rgba(255, 255, 255, 0.95)",
+                      border: "1.5px dashed var(--border-glow)",
+                      boxShadow: "0 4px 14px rgba(255, 90, 120, 0.08)",
                     }}
                   >
-                    Aku suka sama <span style={{ color: "var(--color-primary-text)" }}>{crushName}</span>, dan bahkan rasa suka ini perlahan sudah mulai merasakan cinta.
+                    Aku beneran suka sama <span style={{ color: "var(--color-primary-text)" }}>{crushName}</span>. Dan gawatnya lagi, rasa suka ini belakangan udah lewat masa uji coba dan mulai pelan-pelan bertransformasi jadi perasaan cinta.
                   </div>
 
                   {/* Interactive Bold Italic Confession Banner */}
@@ -564,9 +569,9 @@ export default function StoryCardDeck() {
                     onClick={handleConfessionHeartClick}
                     style={{
                       width: "100%",
-                      padding: "14px 18px",
+                      height: "48px",
                       borderRadius: "var(--radius-full)",
-                      background: "linear-gradient(135deg, rgba(255, 71, 126, 0.14) 0%, rgba(255, 183, 3, 0.12) 100%)",
+                      background: "linear-gradient(135deg, rgba(255, 71, 126, 0.15) 0%, rgba(255, 183, 3, 0.15) 100%)",
                       border: "1.5px solid rgba(255, 71, 126, 0.45)",
                       boxShadow: "0 8px 22px -4px rgba(255, 71, 126, 0.22)",
                       cursor: "pointer",
@@ -576,18 +581,19 @@ export default function StoryCardDeck() {
                       gap: "10px",
                       userSelect: "none",
                       transition: "all 0.25s ease",
+                      boxSizing: "border-box",
                     }}
                   >
                     <motion.div
-                      animate={{ scale: [1, 1.25, 1] }}
-                      transition={{ repeat: Infinity, duration: 1.3, ease: "easeInOut" }}
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
                       style={{ display: "inline-flex", alignItems: "center" }}
                     >
                       <Heart size={20} color="var(--color-primary)" fill="var(--color-primary)" />
                     </motion.div>
                     <span
                       style={{
-                        fontSize: "1.15rem",
+                        fontSize: "1.12rem",
                         fontWeight: 800,
                         fontStyle: "italic",
                         color: "var(--color-primary-text)",
@@ -597,19 +603,35 @@ export default function StoryCardDeck() {
                       I do really like you
                     </span>
                     <motion.div
-                      animate={{ scale: [1, 1.25, 1] }}
-                      transition={{ repeat: Infinity, duration: 1.3, ease: "easeInOut", delay: 0.2 }}
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut", delay: 0.2 }}
                       style={{ display: "inline-flex", alignItems: "center" }}
                     >
                       <Heart size={20} color="var(--color-primary)" fill="var(--color-primary)" />
                     </motion.div>
                   </motion.div>
 
-                  <p style={{ fontSize: "0.78rem", color: "var(--text-caption)" }}>
+                  <p style={{ fontSize: "0.77rem", color: "var(--text-caption)" }}>
                     {confessionTaps > 0
-                      ? `✨ Perasaan cinta tersampaikan (${confessionTaps}x)!`
-                      : "(Ketuk teks di atas untuk getaran hatinya ✨)"}
+                      ? `Detak jantung bertambah (${confessionTaps}x)! (Tenang, tombol ini aman & gak bakal motong pulsa)`
+                      : "(Boleh diketuk kok, aman dan gak bakal nyetrum)"}
                   </p>
+
+                  <div
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "var(--text-body)",
+                      paddingTop: "10px",
+                      borderTop: "1px dashed var(--border-soft)",
+                      width: "100%",
+                      lineHeight: "1.55",
+                      background: "rgba(255, 255, 255, 0.65)",
+                      padding: "10px 12px",
+                      borderRadius: "var(--radius-sm)",
+                    }}
+                  >
+                    <strong>Protokol Anti-Canggung:</strong> Gak usah bingung mau bales apa ya. Ini bukan ujian lisan yang harus langsung dijawab, murni biar aku gak kena denda overthinking kelamaan. Besok ketemu kita tetep bisa ketawa-ketawa santai kayak biasa!
+                  </div>
                 </div>
               </div>
             )}
@@ -809,7 +831,7 @@ export default function StoryCardDeck() {
             <span>
               {currentStep === 0 && "Buka Catatan Rahasia"}
               {currentStep === 1 && "Lanjut: Tentang Kamu"}
-              {currentStep === 2 && "Buka Ungkapan Rasa"}
+              {currentStep === 2 && "Buka Pengungkapan Perasaan"}
               {currentStep === 3 && "Baca Surat Kejujuran"}
               {currentStep === 4 && "Lanjut ke Penutup"}
             </span>
