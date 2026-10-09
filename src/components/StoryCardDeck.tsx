@@ -31,6 +31,7 @@ import confetti from "canvas-confetti";
 import { confessionConfig, getWhatsAppUrl } from "@/config/confession";
 import SoundtrackPlayer from "@/components/SoundtrackPlayer";
 import ScratchCard from "@/components/ScratchCard";
+import QuestionSection from "@/components/QuestionSection";
 import { useMusic } from "@/context/MusicContext";
 import { DEFAULT_COVER } from "@/config/music";
 
@@ -42,6 +43,7 @@ const STEP_LABELS = [
   "Tentang Kamu",
   "Pengungkapan Perasaan",
   "Surat Kejujuran",
+  "Kuis Kejujuran",
   "Pesan Akhir",
 ] as const;
 
@@ -805,8 +807,13 @@ export default function StoryCardDeck() {
               </div>
             )}
 
-            {/* ===================== STEP 5: CONCLUSION ===================== */}
+            {/* ===================== STEP 5: QUESTION SESSION ===================== */}
             {currentStep === 5 && (
+              <QuestionSection onComplete={handleNext} />
+            )}
+
+            {/* ===================== STEP 6: CONCLUSION ===================== */}
+            {currentStep === 6 && (
               <div className="story-card-scrollable" style={{ textAlign: "center" }}>
                 <div className="badge-pill badge-green" style={{ margin: "0 auto" }}>
                   <CheckCircle2 size={12} />
@@ -908,7 +915,8 @@ export default function StoryCardDeck() {
               {currentStep === 1 && "Lanjut: Tentang Kamu"}
               {currentStep === 2 && "Buka Pengungkapan Perasaan"}
               {currentStep === 3 && "Baca Surat Kejujuran"}
-              {currentStep === 4 && "Lanjut ke Penutup"}
+              {currentStep === 4 && "Mulai Kuis Santai"}
+              {currentStep === 5 && "Buka Pesan Akhir"}
             </span>
             <ArrowRight size={17} />
           </button>
